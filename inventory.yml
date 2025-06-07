@@ -1,0 +1,8 @@
+---
+all:
+  children:
+    webservers:
+      hosts:
+        devops-01:
+        devops-02:
+...

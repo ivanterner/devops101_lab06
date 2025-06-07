@@ -1,0 +1,15 @@
+---
+- name: install_nginx_with_virtual_hosts
+  become: true
+  hosts: webservers
+  become_method: sudo
+  gather_facts: false
+
+  vars:
+    sites:
+      - "mehmat.ru"
+      - "fizfak.ru"
+      - "etis.com"
+  roles:
+    - nginx-vhosts
+...
