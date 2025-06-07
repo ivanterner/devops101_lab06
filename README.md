@@ -216,11 +216,12 @@ curl devops-02 -H "Host: mehmat.ru"
 
 
 Создается workflows Ansible lint 
-
+```bash
 mkdir .github
 cd .github/
 cd workflows/
 vim lint.yml
+```
 
 ```yaml
 ---
