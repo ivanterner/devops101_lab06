@@ -1,5 +1,5 @@
 ---
-- name: install_nginx_with_virtual_hosts
+- name: Install_nginx_with_virtual_hosts
   become: true
   hosts: webservers
   become_method: ansible.builtin.sudo
