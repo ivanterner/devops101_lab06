@@ -3,7 +3,7 @@
   ansible.builtin.apt:
     name: nginx
     state: latest
-
+    update_cache: true
 - name: Copy_nginx_config_from_template
   ansible.builtin.template:
     src: 'site.conf.j2'
