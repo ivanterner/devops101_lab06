@@ -12,7 +12,7 @@
     group: root
     mode: '0644'
   loop: '{{ sites }}'
-  notify: reload_nginx
+  notify: Reload_nginx
 
 - name: Create_sites_folders
   ansible.builtin.file:
