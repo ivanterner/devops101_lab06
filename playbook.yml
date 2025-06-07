@@ -11,5 +11,5 @@
       - "fizfak.ru"
       - "etis.com"
   roles:
-    - Nginx-vhosts
+    - nginx_vhosts
 ...
