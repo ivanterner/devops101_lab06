@@ -214,11 +214,8 @@ curl devops-02 -H "Host: mehmat.ru"
 </HTML>
 ```
 
-<<<<<<< HEAD
-Создаем Workflow Ansible-lint
-=======
+
 Создается workflows Ansible lint 
->>>>>>> 9810782 (test)
 
 mkdir .github
 cd .github/
@@ -241,7 +238,4 @@ jobs:
         uses: ansible/ansible-lint@main
 ...
 ```
-<<<<<<< HEAD
-=======
 ...
->>>>>>> 9810782 (test)
