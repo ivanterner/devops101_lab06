@@ -27,7 +27,7 @@ all:
 ├── playbook.yml
 ├── README.md
 └── roles
-    └── nginx-vhosts
+    └── nginx_vhosts
         ├── handlers
         │   └── main.yml
         ├── tasks
@@ -41,10 +41,10 @@ all:
 Playbook
 ```yaml
 ---
-- name: install_nginx_with_virtual_hosts
+- name: Install_nginx_with_virtual_hosts
   become: true
   hosts: webservers
-  become_method: sudo
+  become_method: ansible.builtin.sudo
   gather_facts: false
 
   vars:
@@ -53,23 +53,23 @@ Playbook
       - "fizfak.ru"
       - "etis.com"
   roles:
-    - nginx-vhosts
+    - nginx_vhosts
 ...
 ```
 
 
 
 Роль  nginx-vhosts
-roles/nginx-vhosts/tasks/main.yml
+roles/nginx_vhosts/tasks/main.yml
 ```yaml
 ---
-- name: install_nginx
+- name: Install_nginx
   ansible.builtin.apt:
     name: nginx
-    state: latest
-      #uptade_cache: true
+    state: present
+    update_cache: true
 
-- name: copy_nginx_config_from_template
+- name: Copy_nginx_config_from_template
   ansible.builtin.template:
     src: 'site.conf.j2'
     dest: '/etc/nginx/conf.d/site-{{ item }}.conf'
@@ -77,15 +77,18 @@ roles/nginx-vhosts/tasks/main.yml
     group: root
     mode: '0644'
   loop: '{{ sites }}'
-  notify: reload_nginx
+  notify: Reload_nginx
 
-- name: create_sites_folders
+- name: Create_sites_folders
   ansible.builtin.file:
     state: directory
     path: '/var/www/{{ item }}/'
+    owner: root
+    group: root
+    mode: '0644'
   loop: '{{ sites }}'
 
-- name: copy_index_from_template
+- name: Copy_index_from_template
   ansible.builtin.template:
     src: 'index.html.j2'
     dest: '/var/www/{{ item }}/index.html'
@@ -94,11 +97,10 @@ roles/nginx-vhosts/tasks/main.yml
     mode: '0644'
   loop: '{{ sites }}'
 ...
-
 ```
 
 Шаблон конфига виртуального хоста
-roles/nginx-vhosts/templates/site.conf.j2
+roles/nginx_vhosts/templates/site.conf.j2
 
 ```html
 server {
@@ -116,7 +118,7 @@ server {
 ```
 
 Шаблона стартовой страницы (index) виртуального сайта (vhost)
-roles/nginx-vhosts/templates/index.html.j2
+roles/nginx_vhosts/templates/index.html.j2
 
 ```html
 <HTML>
@@ -127,10 +129,10 @@ roles/nginx-vhosts/templates/index.html.j2
 ```
 
 Задача для handler
-roles/nginx-vhosts/handlers/main.yml
+roles/nginx_vhosts/handlers/main.yml
 ```yaml
 ---
-- name: reload_nginx
+- name: Reload_nginx
   ansible.builtin.systemd:
     name: nginx
     state: reloaded
@@ -238,4 +240,10 @@ jobs:
       - name: Run ansible-lint
         uses: ansible/ansible-lint@main
 ...
+```
+Добовляем в репозитоий, делаем commit и push-им в Github
+```bash
+git add .
+git commit -m "add worklflows ansible-lint"
+git push
 ```
