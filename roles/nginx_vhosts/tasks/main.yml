@@ -21,7 +21,7 @@
     path: '/var/www/{{ item }}/'
     owner: root
     group: root
-    mode: '0644'  
+    mode: '0644'
   loop: '{{ sites }}'
 
 - name: Copy_index_from_template
