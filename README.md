@@ -241,7 +241,7 @@ jobs:
         uses: ansible/ansible-lint@main
 ...
 ```
-Добовляем в репозитоий, делаем commit и push-им в Github
+Добавляем в репозитоий, делаем commit и push-им в Github
 ```bash
 git add .
 git commit -m "add worklflows ansible-lint"
