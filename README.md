@@ -150,7 +150,7 @@ ansible-playbook playbook.yml -i inventory.yml --check
 ```
 Боевой прогон playbook-а
 ```bash
-ansible-playbook playbook.yml -i inventory.yml --check
+ansible-playbook playbook.yml -i inventory.yml
 ```
 
 Проверка через curl
